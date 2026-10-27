@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
 import { usePathname } from "next/navigation";
@@ -14,9 +15,9 @@ const PAGE_TITLES: Record<string, string> = {
   "/settings": "Settings",
 };
 
-export function DashboardLayout({ children }: { children: React.ReactNode }) {
+function LayoutInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const basePath = "/" + pathname.split("/")[1];
+  const basePath = "/" + (pathname ? pathname.split("/")[1] : "overview");
   const title = PAGE_TITLES[basePath] ?? "TraceLens";
 
   return (
@@ -51,5 +52,26 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         </main>
       </div>
     </div>
+  );
+}
+
+export function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            height: "100vh",
+            overflow: "hidden",
+            background: "var(--bg-base)",
+          }}
+        >
+          <div style={{ flex: 1, padding: "20px" }}>{children}</div>
+        </div>
+      }
+    >
+      <LayoutInner>{children}</LayoutInner>
+    </Suspense>
   );
 }

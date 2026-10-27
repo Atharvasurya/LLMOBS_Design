@@ -236,11 +236,9 @@ export default function TraceDetailPage() {
   return (
     <Suspense
       fallback={
-        <DashboardLayout>
-          <div style={{ padding: 20 }}>
-            <SkeletonCard height={400} />
-          </div>
-        </DashboardLayout>
+        <div style={{ minHeight: "100vh", background: "var(--bg-base)", padding: 20 }}>
+          <SkeletonCard height={400} />
+        </div>
       }
     >
       <TraceDetailContent />

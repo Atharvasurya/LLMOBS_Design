@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { MODEL_LABELS, MODEL_COLORS } from "@/lib/mock/data";
 import type { ModelId } from "@/types";
+import { Inbox } from "lucide-react";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -80,11 +81,11 @@ export function SkeletonCard({ height = 160 }: { height?: number }) {
 export function EmptyState({
   title = "No data",
   description = "No data available for the selected filters.",
-  icon = "📭",
+  icon,
 }: {
   title?: string;
   description?: string;
-  icon?: string;
+  icon?: React.ReactNode;
 }) {
   return (
     <div
@@ -94,13 +95,29 @@ export function EmptyState({
         alignItems: "center",
         justifyContent: "center",
         padding: "40px 20px",
-        gap: 8,
+        gap: 12,
         color: "var(--text-tertiary)",
       }}
     >
-      <span style={{ fontSize: 32 }}>{icon}</span>
+      <div
+        style={{
+          width: 48,
+          height: 48,
+          borderRadius: "50%",
+          background: "var(--bg-surface-2)",
+          border: "1px solid var(--border)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "var(--text-tertiary)",
+        }}
+      >
+        {icon || <Inbox size={22} />}
+      </div>
       <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text-secondary)" }}>{title}</div>
-      <div style={{ fontSize: 12.5, textAlign: "center", maxWidth: 280 }}>{description}</div>
+      <div style={{ fontSize: 12.5, textAlign: "center", maxWidth: 280, color: "var(--text-tertiary)" }}>
+        {description}
+      </div>
     </div>
   );
 }

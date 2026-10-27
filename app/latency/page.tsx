@@ -7,6 +7,7 @@ import { getModelBreakdown } from "@/lib/api";
 import type { ModelBreakdown } from "@/types";
 import { formatLatency } from "@/lib/utils";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { CheckCircle2, AlertTriangle } from "lucide-react";
 
 export default function LatencyPage() {
   const [models, setModels] = useState<ModelBreakdown[]>([]);
@@ -89,8 +90,42 @@ export default function LatencyPage() {
                   <td style={{ textAlign: "right" }}>{formatLatency(m.avgLatencyP50)}</td>
                   <td style={{ textAlign: "right", color: m.avgLatencyP95 > 2000 ? "var(--warning)" : "var(--text-primary)" }}>{formatLatency(m.avgLatencyP95)}</td>
                   <td style={{ textAlign: "right", color: m.avgLatencyP99 > 3000 ? "var(--error)" : "var(--text-primary)" }}>{formatLatency(m.avgLatencyP99)}</td>
-                  <td style={{ textAlign: "right", color: m.avgLatencyP95 < 2000 ? "var(--success)" : "var(--warning)", fontWeight: 600 }}>
-                    {m.avgLatencyP95 < 2000 ? "✓ In SLA" : "⚠ At Risk"}
+                  <td style={{ textAlign: "right" }}>
+                    {m.avgLatencyP95 < 2000 ? (
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 4,
+                          padding: "2px 8px",
+                          borderRadius: 99,
+                          background: "rgba(16, 185, 129, 0.12)",
+                          color: "var(--success)",
+                          fontSize: 11,
+                          fontWeight: 600,
+                        }}
+                      >
+                        <CheckCircle2 size={12} />
+                        <span>In SLA</span>
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 4,
+                          padding: "2px 8px",
+                          borderRadius: 99,
+                          background: "rgba(245, 158, 11, 0.12)",
+                          color: "var(--warning)",
+                          fontSize: 11,
+                          fontWeight: 600,
+                        }}
+                      >
+                        <AlertTriangle size={12} />
+                        <span>At Risk</span>
+                      </span>
+                    )}
                   </td>
                 </tr>
               ))}

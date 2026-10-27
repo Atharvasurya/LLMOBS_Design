@@ -165,7 +165,7 @@ export default function TracesPage() {
               ))}
             </div>
           ) : traces.length === 0 ? (
-            <EmptyState title="No traces found" description="Try adjusting your filters or search query." icon="🔍" />
+            <EmptyState title="No traces found" description="Try adjusting your filters or search query." icon={<Search size={20} />} />
           ) : (
             <div style={{ overflowX: "auto" }}>
               <table className="tl-table">

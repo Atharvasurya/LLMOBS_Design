@@ -6,7 +6,7 @@ Built as **Phase 1 (Frontend & Design Architecture)** for a final-year engineeri
 
 ---
 
-## 🚀 Key Highlights & Features
+## Key Highlights & Features
 
 - **Dark Theme by Default**: Deep navy/near-black theme (`#0B0F19`), card surfaces (`#111827`), 1px borders (`#1F2937`), with full Dark/Light mode toggle.
 - **5 KPI Sparkline Cards**: Total Requests, Total Cost, Avg Latency, Error Rate, and Tokens Used with animated trend badges.
@@ -34,7 +34,7 @@ Built as **Phase 1 (Frontend & Design Architecture)** for a final-year engineeri
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 - **Language**: TypeScript (strict mode)
@@ -46,7 +46,7 @@ Built as **Phase 1 (Frontend & Design Architecture)** for a final-year engineeri
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 tracelens/
@@ -81,7 +81,7 @@ tracelens/
 
 ---
 
-## 💻 Getting Started Locally
+## Getting Started Locally
 
 1. **Install dependencies**:
    ```bash
@@ -98,7 +98,7 @@ tracelens/
 
 ---
 
-## 🔌 Connecting the FastAPI + PostgreSQL Backend (Phase 2)
+## Connecting the FastAPI + PostgreSQL Backend (Phase 2)
 
 TraceLens was engineered with strict separation between UI components and data fetching. All components query data through the typed API abstraction functions in [`/lib/api/index.ts`](file:///e:/design/tracelens/lib/api/index.ts).
 

@@ -6,6 +6,7 @@ import { getModelBreakdown } from "@/lib/api";
 import type { ModelBreakdown } from "@/types";
 import { formatCurrency, formatLatency, formatPercent, formatNumber } from "@/lib/utils";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, Radar } from "recharts";
+import { Cpu } from "lucide-react";
 
 export default function ModelsPage() {
   const [models, setModels] = useState<ModelBreakdown[]>([]);
@@ -42,7 +43,7 @@ export default function ModelsPage() {
             <Card key={m.model} style={{ borderLeft: `3px solid ${m.color}` }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
                 <div style={{ width: 36, height: 36, borderRadius: "var(--radius-md)", background: `${m.color}22`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ fontSize: 18 }}>🤖</span>
+                  <Cpu size={18} color={m.color} />
                 </div>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: "var(--text-primary)" }}>{m.label}</div>

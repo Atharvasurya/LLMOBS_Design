@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Search, Sun, Moon, ChevronDown } from "lucide-react";
+import { Bell, Search, Sun, Moon, ChevronDown, Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useFiltersStore, DATE_RANGE_PRESETS } from "@/lib/store/filters";
 import { ALERTS } from "@/lib/mock/data";
@@ -126,7 +126,7 @@ export function TopBar({ title }: TopBarProps) {
               transition: "all 0.15s ease",
             }}
           >
-            <span>📅</span>
+            <Calendar size={13.5} color="var(--accent-primary)" />
             <span>{dateRange.label}</span>
             <ChevronDown size={12} />
           </button>

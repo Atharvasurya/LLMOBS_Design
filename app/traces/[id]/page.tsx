@@ -7,7 +7,7 @@ import { getTraceById } from "@/lib/api";
 import { MODEL_COLORS } from "@/lib/mock/data";
 import type { Trace, TraceStep } from "@/types";
 import { formatDateTime, formatCurrency, formatLatency, formatTokens } from "@/lib/utils";
-import { ArrowLeft, Clock, Coins, Hash, Layers } from "lucide-react";
+import { ArrowLeft, Clock, Coins, Hash, Layers, Search } from "lucide-react";
 import Link from "next/link";
 
 const STEP_TYPE_COLORS: Record<string, string> = {
@@ -82,7 +82,7 @@ function TraceDetailContent() {
   if (!loading && !trace) {
     return (
       <DashboardLayout>
-        <EmptyState title="Trace not found" description={`No trace found with ID: ${params.id}`} icon="🔍" />
+        <EmptyState title="Trace not found" description={`No trace found with ID: ${params.id}`} icon={<Search size={20} />} />
       </DashboardLayout>
     );
   }

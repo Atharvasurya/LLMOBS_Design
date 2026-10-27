@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Card, StatusBadge, ModelBadge, SkeletonCard, EmptyState } from "@/components/cards/Card";
@@ -66,7 +66,7 @@ function WaterfallStep({ step, totalMs }: { step: TraceStep; totalMs: number }) 
   );
 }
 
-export default function TraceDetailPage() {
+function TraceDetailContent() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const [trace, setTrace] = useState<Trace | null>(null);
@@ -229,5 +229,21 @@ export default function TraceDetailPage() {
         ) : null}
       </div>
     </DashboardLayout>
+  );
+}
+
+export default function TraceDetailPage() {
+  return (
+    <Suspense
+      fallback={
+        <DashboardLayout>
+          <div style={{ padding: 20 }}>
+            <SkeletonCard height={400} />
+          </div>
+        </DashboardLayout>
+      }
+    >
+      <TraceDetailContent />
+    </Suspense>
   );
 }
